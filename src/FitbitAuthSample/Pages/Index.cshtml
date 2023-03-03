@@ -1,0 +1,23 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    @if(User.Identity?.IsAuthenticated ?? false)
+    {
+        <p>@User.Identity.Name Signed in</p>
+
+        
+        @foreach(var activity in Model.Activities.Activities)
+        {
+            <p>@activity.ActivityName @activity.ActiveDurationTimeSpan @activity.Calories @activity.LastModified</p>
+        }
+    }
+    else 
+    {
+        <p>Not signed in</p>
+        <a href="/signin">Sign in</a>
+    }
+</div>
